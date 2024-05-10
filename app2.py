@@ -27,35 +27,6 @@ def pickler(filename: str, mode: str = 'unpickle'):
             st.error(f"File {filename} not found.")
             return None
 
-import pathlib
-import streamlit as st
-import altair as alt
-import pickle
-import pandas
-import numpy
-
-
-
-def pickler(filename: str, mode: str = 'unpickle'):
-    """
-    Pickles the file to filename, or unpickles and returns the file
-
-    Parameters
-    ----------
-    filename : str
-        File to pickle to or unpickle from
-    mode : str, optional
-        One of 'pickle' or 'unpickle', by default 'unpickle'
-    """
-    if mode == 'pickle':
-        pickle.dump(all_viz_data, open(filename, 'wb'))
-    elif mode == 'unpickle':
-        try:
-            return pickle.load(open(filename, 'rb'))
-        except FileNotFoundError:
-            st.error(f"File {filename} not found.")
-            return None
-
 if __name__ == "__main__":
     all_viz_data = pickler(filename=pathlib.Path("df_sampled.pkl"))
 
